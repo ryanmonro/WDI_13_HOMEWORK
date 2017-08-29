@@ -36,3 +36,20 @@ for (var iteration = 0; iteration < myTopTVShows.length; iteration++){
   }
   console.log("My " + index + suffix + " choice: " + myTopTVShows[index]);
 }
+
+// Pattern
+// There are five rows
+for (var row = 0; row < 5; row ++){
+  // start with empty row
+  var rowPattern = "";
+  // add spaces at beginning, beginning with 0 for 0th row and increasing
+  for (var spaceCount = 0; spaceCount < row; spaceCount++){
+    rowPattern += " ";
+  }
+  // add a $ followed by a space beginning with 5 for row 0, decreasing 
+  for (var count = 5; count > row; count--){
+    rowPattern += "$ ";
+  }
+  // output row to console
+  console.log(rowPattern);
+}
