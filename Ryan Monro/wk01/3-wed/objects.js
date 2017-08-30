@@ -62,9 +62,13 @@ var movie = {
     'Robert Loggia',
     'Mary Elizabeth Mastrantonio',
     'F. Murray Abraham'
-  ]
+  ],
+  summary: function(){
+    return movie.title + " lasts for " + movie.length + " minutes. Stars: " + 
+      movie.stars.slice(0, movie.stars.length - 1).join(', ') + " and " +
+      movie.stars[movie.stars.length - 1] + ".";
+  }
 };
 
-console.log(movie.title + " lasts for " + movie.length + " minutes. Stars: " + 
-  movie.stars.slice(0, movie.stars.length - 1).join(', ') + " and " +
-  movie.stars[movie.stars.length - 1] + ".");
+
+console.log(movie.summary());
