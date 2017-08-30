@@ -1,24 +1,26 @@
 var trainLines = [
   {name: "Alamein", stops: ["Flinders St", "Richmond", "East Richmond", "Burnley", "Hawthorn", "Glenferrie"]},
   {name: "Glen Waverley", stops: ["Flagstaff", "Melbourne Central", "Parliament", "Richmond", "Kooyong", "Tooronga"]},
-  {name: "Sandringham", stops: ["Southern Cross", "Richmond", "South Yarra", "Prahran", "Windsor"]}
+  {name: "Sandringham", stops: ["Southern Cross", "Richmond", "South Yarra", "Prahran", "Windsor"]},
+  {name: "Frankston", stops: ["Richmond", "South Yarra", "Hawksburn", "Toorak", "Armadale", "Malvern"]}
 ];
 
 var findLineWithStop = function (stopName){
   var foundLine;
   trainLines.forEach(function(line){
     if (line.stops.indexOf(stopName) > -1) {
-      foundLine = line.stops;
+      foundLine = line;
       return;
     }
   });
   return foundLine;
 };
 
-var origin = "Flinders St";
-var destination = "Prahran";
+var origin;
+var destination;
+var richmond = "Richmond";
 var originLine;
-var desinationLine;
+var destinationLine;
 var journey = [];
 
 
@@ -31,13 +33,13 @@ while (!originLine){
 // prompt for destination until valid station entered, find its line
 while (!destinationLine){
   destination = prompt("What is your destination?");
-  var destinationLine = findLineWithStop(destination);
+  destinationLine = findLineWithStop(destination);
 }
 
 // if origin and destination are on the same line
 if (originLine === destinationLine) {
   // make copy of line
-  var line = originLine.slice();
+  var line = originLine.stops.slice();
   // if line in wrong order, reverse it
   if (line.indexOf(origin) > line.indexOf(destination)) {
     line.reverse();
@@ -46,24 +48,31 @@ if (originLine === destinationLine) {
   journey = line.slice(line.indexOf(origin), line.indexOf(destination) + 1);
 } else {
   // make copies of origin and desination lines
-  var originLineCopy = originLine.slice();
-  var destinationLineCopy = destinationLine.slice();
+  var originLineCopy = originLine.stops.slice();
+  var destinationLineCopy = destinationLine.stops.slice();
   // put origin line in correct order
-  if (originLineCopy.indexOf(origin) > originLineCopy.indexOf("Richmond")){
+  if (originLineCopy.indexOf(origin) > originLineCopy.indexOf(richmond)){
     originLineCopy.reverse();
   }
-  // add origin line stops up to Richmond to journey array
+  // add origin line stops up to and including Richmond to journey array
   journey = originLineCopy.slice(originLineCopy.indexOf(origin),
-    originLineCopy.indexOf("Richmond"));
+    originLineCopy.indexOf(richmond) + 1);
+  // add line change message to journey array's Richmond 
+  journey[journey.length - 1] += "(change to " + destinationLine.name + " line)";
   // put destination line in correct order
-  if (destinationLineCopy.indexOf("Richmond") > destinationLineCopy.indexOf(destination)){
-    destinationLine.reverse();
+  if (destinationLineCopy.indexOf(richmond) > destinationLineCopy.indexOf(destination)){
+    destinationLineCopy.reverse();
   }
   // add destination line stops to journey array
-  journey = journey.concat(destinationLineCopy.slice(destinationLineCopy.indexOf("Richmond"), destinationLineCopy.indexOf(destination) + 1));
+  journey = journey.concat(destinationLineCopy.slice(destinationLineCopy.indexOf(richmond) + 1, destinationLineCopy.indexOf(destination) + 1));
 }
 
 console.log("origin:", origin);
 console.log("destination:", destination);
+console.log("\n");
 console.log(journey.join(" -----> "));
+console.log("\n");
 console.log(journey.length - 1 + " stops total");
+
+// todo: 
+// change at South Yarra instead of Richmond - change at any station that the origin and destination lines have in common?
