@@ -36,6 +36,14 @@ while (!destinationLine){
   destinationLine = findLineWithStop(destination);
 }
 
+// make sure we don't change lines if we don't need to
+if (destination === richmond) {
+  destinationLine = originLine;
+}
+if (origin === richmond) {
+  originLine = destinationLine;
+}
+
 // if origin and destination are on the same line
 if (originLine === destinationLine) {
   // make copy of line
