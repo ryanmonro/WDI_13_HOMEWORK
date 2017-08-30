@@ -66,4 +66,5 @@ var movie = {
 };
 
 console.log(movie.title + " lasts for " + movie.length + " minutes. Stars: " + 
-  movie.stars.join(', ') + ".");
+  movie.stars.slice(0, movie.stars.length - 1).join(', ') + " and " +
+  movie.stars[movie.stars.length - 1] + ".");
