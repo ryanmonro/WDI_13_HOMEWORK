@@ -42,7 +42,7 @@ var findEarliestChange = function(originStops, destinationStops, destinationLine
     }
   };
   var journey = originStops.slice(0, stop + 1);
-  // add line change message to journey array's Richmond entry
+  // add line change message to journey array's final entry
   journey[journey.length - 1] += "\nChange to " + destinationLineName + " line\n" + changeAt;
   var stopsAfterChange = destinationStops.slice(destinationStops.indexOf(changeAt) + 1);
   return journey.concat(stopsAfterChange);
@@ -50,7 +50,7 @@ var findEarliestChange = function(originStops, destinationStops, destinationLine
 
 var origin;
 var destination;
-var changeAt = "Richmond";
+var richmond = "Richmond";
 var originLine;
 var destinationLine;
 
@@ -67,10 +67,10 @@ while (!destinationLine){
 }
 
 // make sure we don't change lines if we don't need to
-if (destination === changeAt) {
+if (destination === richmond) {
   destinationLine = originLine;
 }
-if (origin === changeAt) {
+if (origin === richmond) {
   originLine = destinationLine;
 }
 
@@ -81,9 +81,11 @@ if (originLine === destinationLine) {
   journey = getStopsBetween(origin, destination, originLine);
 } else {
   // copy stops from origin to line change to journey array
-  var originStops = getStopsBetween(origin, changeAt, originLine);
+  var originStops = getStopsBetween(origin, richmond, originLine);
   // add destination line stops to journey array, omitting station where we changed
-  var destinationStops = getStopsBetween(changeAt, destination, destinationLine);
+  var destinationStops = getStopsBetween(richmond, destination, destinationLine);
+  // change at an earlier stop than Richmond if possible)
+  // and concat arrays together, we now have one array of stops
   journey = findEarliestChange(originStops, destinationStops, destinationLine.name);
 }
 
