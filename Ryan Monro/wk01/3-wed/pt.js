@@ -5,6 +5,8 @@ var trainLines = [
   {name: "Frankston", stops: ["Richmond", "South Yarra", "Hawksburn", "Toorak", "Armadale", "Malvern"]}
 ];
 
+// return train line object containing specified stop name
+// returns undefined if stop name not found
 var findLineWithStop = function (stopName){
   var foundLine;
   trainLines.forEach(function(line){
@@ -16,13 +18,41 @@ var findLineWithStop = function (stopName){
   return foundLine;
 };
 
+// returns array of stops between origin and destination inclusive
+var getStopsBetween = function(origin, destination, line){
+  // make copy of line
+  var lineCopy = line.stops.slice();
+  // if line in wrong order, reverse it
+  if (lineCopy.indexOf(origin) > lineCopy.indexOf(destination)) {
+    lineCopy.reverse();
+  }
+  // return slice including origin and destination
+  return lineCopy.slice(lineCopy.indexOf(origin), lineCopy.indexOf(destination) + 1);
+}
+
+// find earliest station to change lines at
+var findEarliestChange = function(originStops, destinationStops, destinationLineName){
+  // iterate through stops on origin line, find first stop that is also
+  // in the destination line: that's where we change train lines
+  var changeAt;
+  for (var stop = 0; stop < originStops.length; stop++){
+    if (destinationStops.indexOf(originStops[stop]) > -1) {
+      changeAt = originStops[stop];
+      break;
+    }
+  };
+  var journey = originStops.slice(0, stop + 1);
+  // add line change message to journey array's Richmond entry
+  journey[journey.length - 1] += "\nChange to " + destinationLineName + " line\n" + changeAt;
+  var stopsAfterChange = destinationStops.slice(destinationStops.indexOf(changeAt) + 1);
+  return journey.concat(stopsAfterChange);
+};
+
 var origin;
 var destination;
-var richmond = "Richmond";
+var changeAt = "Richmond";
 var originLine;
 var destinationLine;
-var journey = [];
-
 
 // prompt for origin station until valid station entered, find its line
 while (!originLine){
@@ -37,50 +67,31 @@ while (!destinationLine){
 }
 
 // make sure we don't change lines if we don't need to
-if (destination === richmond) {
+if (destination === changeAt) {
   destinationLine = originLine;
 }
-if (origin === richmond) {
+if (origin === changeAt) {
   originLine = destinationLine;
 }
 
+var journey = [];
 // if origin and destination are on the same line
 if (originLine === destinationLine) {
-  // make copy of line
-  var line = originLine.stops.slice();
-  // if line in wrong order, reverse it
-  if (line.indexOf(origin) > line.indexOf(destination)) {
-    line.reverse();
-  }
-  // copy required stops for journey to journey array
-  journey = line.slice(line.indexOf(origin), line.indexOf(destination) + 1);
+  // copy stops between origin and destination to journey array
+  journey = getStopsBetween(origin, destination, originLine);
 } else {
-  // make copies of origin and desination lines
-  var originLineCopy = originLine.stops.slice();
-  var destinationLineCopy = destinationLine.stops.slice();
-  // put origin line in correct order
-  if (originLineCopy.indexOf(origin) > originLineCopy.indexOf(richmond)){
-    originLineCopy.reverse();
-  }
-  // add origin line stops up to and including Richmond to journey array
-  journey = originLineCopy.slice(originLineCopy.indexOf(origin),
-    originLineCopy.indexOf(richmond) + 1);
-  // add line change message to journey array's Richmond 
-  journey[journey.length - 1] += "(change to " + destinationLine.name + " line)";
-  // put destination line in correct order
-  if (destinationLineCopy.indexOf(richmond) > destinationLineCopy.indexOf(destination)){
-    destinationLineCopy.reverse();
-  }
-  // add destination line stops to journey array
-  journey = journey.concat(destinationLineCopy.slice(destinationLineCopy.indexOf(richmond) + 1, destinationLineCopy.indexOf(destination) + 1));
+  // copy stops from origin to line change to journey array
+  var originStops = getStopsBetween(origin, changeAt, originLine);
+  // add destination line stops to journey array, omitting station where we changed
+  var destinationStops = getStopsBetween(changeAt, destination, destinationLine);
+  journey = findEarliestChange(originStops, destinationStops, destinationLine.name);
 }
 
-console.log("origin:", origin);
-console.log("destination:", destination);
+console.log("origin: " + origin + " (" + originLine.name + " line)");
+console.log("destination: " + destination + " (" + destinationLine.name + " line)");
 console.log("\n");
 console.log(journey.join(" -----> "));
 console.log("\n");
 console.log(journey.length - 1 + " stops total");
 
-// todo: 
-// change at South Yarra instead of Richmond - change at any station that the origin and destination lines have in common?
+
