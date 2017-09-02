@@ -26,33 +26,57 @@ var getStopsBetween = function(origin, destination, line){
   if (lineCopy.indexOf(origin) > lineCopy.indexOf(destination)) {
     lineCopy.reverse();
   }
-  // return slice including origin and destination
+  // return array slice including origin and destination
   return lineCopy.slice(lineCopy.indexOf(origin), lineCopy.indexOf(destination) + 1);
 }
 
 // find earliest station to change lines at
-var findEarliestChange = function(originStops, destinationStops, destinationLineName){
-  // iterate through stops on origin line, find first stop that is also
-  // in the destination line: that's where we change train lines
-  var changeAt;
-  for (var stop = 0; stop < originStops.length; stop++){
-    if (destinationStops.indexOf(originStops[stop]) > -1) {
-      changeAt = originStops[stop];
-      break;
+var findEarliestChange = function(journey){
+  // iterate through stops on journey, find first stop that occurs again
+  // later in the journey
+  for (var changeFrom = 0; changeFrom < journey.length; changeFrom++){
+    // look at all subsequent stops, compare to current stop
+    for (var changeTo = changeFrom + 1; changeTo < journey.length; changeTo++){
+      if (journey[changeFrom] === journey[changeTo]){
+        // we now have the index of the stop where the line change should occur
+        // remove all stops _between_ changeTo and changeFrom
+        var stopsToRemove = changeTo - changeFrom;
+        // only remove stops _between_ change stations
+        journey.splice(changeFrom + 1, stopsToRemove - 1);
+        return journey;
+      }
     }
-  };
-  var journey = originStops.slice(0, stop + 1);
-  // add line change message to journey array's final entry
-  journey[journey.length - 1] += "\nChange to " + destinationLineName + " line\n" + changeAt;
-  var stopsAfterChange = destinationStops.slice(destinationStops.indexOf(changeAt) + 1);
-  return journey.concat(stopsAfterChange);
+  }
 };
+
+// return journey as string
+var journeyAsString = function(journey, destinationLineName){
+  var journeyString = ""; 
+  journey.forEach(function(stopName, index){
+    // add each stop name to the string
+    journeyString += stopName;
+    // if the next stop name is the same stop, indicate a line change
+    if (stopName === journey[index + 1]) {
+      journeyString += "\nChange to " + destinationLineName + " line\n";
+    }
+    // otherwise add the arrow between stops
+    else if (index < journey.length - 1) {
+      journeyString += " -----> ";
+    }
+  });
+  return journeyString;
+};
+
+//
+// Main program begins here
+//
 
 var origin;
 var destination;
 var richmond = "Richmond";
 var originLine;
 var destinationLine;
+var changeLines = false;
 
 // prompt for origin station until valid station entered, find its line
 while (!originLine){
@@ -80,20 +104,26 @@ if (originLine === destinationLine) {
   // copy stops between origin and destination to journey array
   journey = getStopsBetween(origin, destination, originLine);
 } else {
-  // copy stops from origin to line change to journey array
+  // get stops between origin and line change
   var originStops = getStopsBetween(origin, richmond, originLine);
-  // add destination line stops to journey array, omitting station where we changed
+  // get stops between line change and destination
   var destinationStops = getStopsBetween(richmond, destination, destinationLine);
+  // concat arrays together, we now have one array of stops
+  journey = originStops.concat(destinationStops);
   // change at an earlier stop than Richmond if possible)
-  // and concat arrays together, we now have one array of stops
-  journey = findEarliestChange(originStops, destinationStops, destinationLine.name);
+  // findEarliestChange(journey);
+  changeLines = true;
 }
 
+// Display journey to console
 console.log("origin: " + origin + " (" + originLine.name + " line)");
 console.log("destination: " + destination + " (" + destinationLine.name + " line)");
 console.log("\n");
-console.log(journey.join(" -----> "));
+console.log(journeyAsString(journey, destinationLine.name));
 console.log("\n");
-console.log(journey.length - 1 + " stops total");
-
-
+var journeyLength = journey.length - 1;
+// account for incorrect journey length if there's a line change
+if (changeLines){
+  journeyLength--;
+}
+console.log(journeyLength + " stops total");
