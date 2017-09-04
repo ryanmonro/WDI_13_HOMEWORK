@@ -14,7 +14,7 @@ header {
   background-repeat: repeat-x;
 }
 
-article a {
+a {
   text-decoration: none;
   font-weight: bold;
   color: tomato;
@@ -31,36 +31,34 @@ h1 {
   font-weight: bold;
 }
 
-aside {
-  font-weight: 600;
-}
-
 aside h3 {
   text-transform: uppercase;
-  margin: 0.5em; 
+  font-size: 14px;
+  margin-bottom: 0;
 }
 
 aside a {
   color: black;
-  margin-left: 0.5em;
+    /*margin-left: 0.5em;*/
   display: block;
   text-decoration: none;
 }
 
 aside img {
   padding: 10px 0;
+  display: block;
+}
+
+.logocontainer {
+  width: 300px;
+  height: 250px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .articles {
   max-width: 650px;
-}
-
-.column {
-  padding: 20px;
-  float: left;
-  display: inline;
-  background: white;
-  margin: 10px;
 }
 
 #columns {
@@ -69,16 +67,12 @@ aside img {
   max-width: 950px;
 }
 
-p {
-}
-
-
-.logocontainer {
-  width: 300px;
-  height: 250px;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
+.column {
+  padding: 20px;
+  float: left;
+  display: inline;
+  background: white;
+  margin: 10px;
 }
 
 #socialicons {
@@ -90,10 +84,6 @@ p {
 
 img.logo {
   display: inline;
-}
-
-.sidebarimage {
-  display: block;
 }
 
 footer.socials {
