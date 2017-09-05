@@ -77,8 +77,8 @@ header>h2 {
 
 header>nav>a{
   display: inline-block;
-  height: 58px;
-  line-height: 58px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   color: white;
   background: black;
@@ -105,8 +105,12 @@ a {
   color: #CCC;
 }
 
+body>footer {
+  padding-top: 20px;
+  color: #CCC;
+}
+
 body>footer>nav {
-  padding: 10px;
   font-size: 0px;
 }
 
