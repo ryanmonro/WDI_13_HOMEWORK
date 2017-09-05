@@ -19,7 +19,7 @@ h1 {
   margin: 10px 0;
 }
 
-h1.date {
+.date {
   color: #CCC;
 }
 
@@ -32,14 +32,14 @@ h1.date {
 }
 
 main {
-  padding-right: 20px;
-  width: 66.6666667%;
+  padding-right: 30px;
+  width: 70%;
 }
 
 aside {
   vertical-align: top;
   padding-top: 40px;
-  width: 33.333333%;
+  width: 30%;
   color: #999;
 }
 
@@ -60,12 +60,12 @@ article {
   border-bottom: 1px solid #AAA;
 }
 
-header>h1 {
+header h1 {
   color: crimson;
   font-size: 36px;  
 }
 
-header>h2 {
+header h2 {
   font-size: 22px;
   color: #AAA;
 }
@@ -106,7 +106,7 @@ a {
 }
 
 body>footer {
-  padding-top: 20px;
+  padding-top: 30px;
   color: #CCC;
 }
 
