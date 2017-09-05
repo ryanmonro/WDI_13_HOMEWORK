@@ -9,18 +9,18 @@ p, h1, h2, h3, a, time {
 
 body {
   font-family: "Open Sans", sans-serif;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 11px;
+  line-height: 18px;
 }
 
 h1 {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 h1.date {
-  color: #AAA;
+  color: #CCC;
 }
 
 .column {
@@ -38,20 +38,21 @@ main {
 
 aside {
   vertical-align: top;
-  padding-top: 20px;
+  padding-top: 40px;
   width: 33.333333%;
-  color: #AAA;
+  color: #999;
 }
 
 aside img {
-  border-top: 1px solid #CCC;
+  border-top: 1px solid #AAA;
   padding: 20px 0;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #AAA;
 }
 
 aside h3 {
   font-size: 1em;
   font-weight: bold;
+  margin: 10px 0;
 }
 
 article {
@@ -95,9 +96,8 @@ a {
   color: crimson;
 }
 
-.first {
+.firstLetter {
   float: left;
-  /*display: inline-block;*/
   font-size: 6em;
   line-height: 1em;
   width: 1em;
@@ -115,7 +115,7 @@ body>footer>nav {
 }
 
 body>footer>nav>a {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 12px;
   border-right: 1px solid #AAA;
   padding: 0 5px;
