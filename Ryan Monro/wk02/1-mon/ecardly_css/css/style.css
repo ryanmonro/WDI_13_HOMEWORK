@@ -57,12 +57,12 @@ aside img {
   text-align: center;
 }
 
-.articles {
+main {
   max-width: 650px;
 }
 
 #columns {
-  overflow: auto;
+  /*overflow: auto;*/
   margin: 0 auto;
   max-width: 950px;
 }
