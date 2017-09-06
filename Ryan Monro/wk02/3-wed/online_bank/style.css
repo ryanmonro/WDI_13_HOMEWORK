@@ -1,0 +1,57 @@
+html {
+  
+}
+
+body {
+  font-family: "Open Sans";
+  margin: 0;
+  height: 100vh;
+}
+
+main {
+  /*width: 80%;*/
+  background: -webkit-linear-gradient(bottom, darkgreen, white);
+  background: -o-linear-gradient(bottom, darkgreen, white);
+  background: linear-gradient(to top, darkgreen, white);
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.account {
+  display: inline-block;
+  background: white;  
+  border: 0.5em solid black;
+  margin: 80px 20px 40px 20px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 12px;
+
+}
+
+img.logo {
+  display: inline-block;
+  height: 4em;
+}
+
+header {
+  text-align: center;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+header h1 {
+  font-size: 3em;
+  display: inline;
+  font-style: italic;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 400;
+}

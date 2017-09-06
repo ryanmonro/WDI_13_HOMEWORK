@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Bank</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" class="logo">
+    <h1>OnlineBank<sup>&reg;</sup></h1> 
+  </header>
+  <main>
+    <div class="account">
+      <h2>Savings</h2>
+      <h3>Your balance is:</h3>
+      <p id="savingsBalance">$0.00</p>
+      <p>
+        <input type="text" id="savingsInput">
+      </p>
+      <button id="savingsWithdraw">Withdraw</button>
+      <button id="savingsDeposit">Deposit</button>
+    </div>
+    <div class="account">
+      <h2>Chequing</h2>
+      <h3>Your balance is:</h3>
+      <p id="chequingBalance">$0.00</p>
+      <p>
+        <input type="text" id="chequingInput">
+      </p>
+      <button id="chequingWithdraw">Withdraw</button>
+      <button id="chequingDeposit">Deposit</button>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
