@@ -1,5 +1,5 @@
-html {
-  
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -9,7 +9,6 @@ body {
 }
 
 main {
-  /*width: 80%;*/
   background: -webkit-linear-gradient(bottom, darkgreen, white);
   background: -o-linear-gradient(bottom, darkgreen, white);
   background: linear-gradient(to top, darkgreen, white);
@@ -23,7 +22,7 @@ main {
   background: white;  
   border: 0.5em solid black;
   margin: 80px 20px 40px 20px;
-  width: 200px;
+  width: 240px;
   padding: 20px;
   border-radius: 12px;
 
@@ -31,7 +30,7 @@ main {
 
 img.logo {
   display: inline-block;
-  height: 4em;
+  height: 80px;
 }
 
 header {
@@ -43,6 +42,7 @@ header {
 
 header h1 {
   font-size: 3em;
+  line-height: 80px;  
   display: inline;
   font-style: italic;
 }

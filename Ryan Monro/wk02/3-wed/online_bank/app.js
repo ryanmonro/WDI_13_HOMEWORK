@@ -16,15 +16,26 @@ var updateBalance = function(){
   chequingBalanceDiv.textContent = "$" + chequingAccount.balance.toFixed(2); 
 };
 
-var withdraw = function(account, input){
+var withdraw = function(account, input, overdraw){
   var amount = Number(input.value);
+  // if balance is lower than withdrawal amount
   if (account.balance < amount) {
-    alert("Insufficient funds")
-  }
-  else {
+    // see if there are sufficient extra funds in other account
+    if (account.balance + overdraw.balance >= amount){
+      // overdraw from other account
+      amount -= account.balance;
+      account.balance = 0;
+      overdraw.balance -= amount;
+      updateBalance();
+    } else {
+      alert("Insufficient funds");
+    }
+  } else {
+    // withdraw from account
     account.balance -= amount;
     updateBalance();
   }
+  // clear input on page
   input.value = "";
 };
 
@@ -37,7 +48,7 @@ var deposit = function(account, input){
 
 
 savingsWithdrawButton.addEventListener('click', function(){
-  withdraw(savingsAccount, savingsInput);
+  withdraw(savingsAccount, savingsInput, chequingAccount);
   console.log(savingsAccount.balance);
 });
 
@@ -46,7 +57,7 @@ savingsDepositButton.addEventListener('click', function(){
 });
 
 chequingWithdrawButton.addEventListener('click', function(){
-  withdraw(chequingAccount, chequingInput);
+  withdraw(chequingAccount, chequingInput, savingsAccount);
 });
 
 chequingDepositButton.addEventListener('click', function(){
