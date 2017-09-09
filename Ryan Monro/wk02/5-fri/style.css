@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  background: #1AA4EB;
+}
+
+h1 {
+  margin: 0;
+  padding: 40px;
+
+}
+
+body {
+  font-family: helvetica;
+  margin: 0;
+  background: white;
+}
+
+div {
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+  background: white;
+  width: 70%;
+  margin: 0 auto;
+}
+
+#results {
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+ul {
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
