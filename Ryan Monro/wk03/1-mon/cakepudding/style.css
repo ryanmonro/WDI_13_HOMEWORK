@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  color: ivory;
+  width: 80%;
+  margin: 20px auto; 
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+header {
+  width: 100%;
+  padding: 20px;
+  height: 100px;
+}
+
+.guesses-box, .turns-box  {
+  vertical-align: top;
+  width: 50%;
+  height: 50px;
+  display: inline-block;
+}
+
+.guesses, .turns-left{
+  font-size: 24px;
+
+
+}
+
+.turns-left, .turns-box {
+  text-align: right;
+}
+
+.progress, .status {
+  font-size: 50px;
+  height: 150px;
+  line-height: 100px;
+  text-align: center;
+}
