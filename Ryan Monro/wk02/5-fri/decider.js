@@ -1,6 +1,6 @@
 var heads = 0, tails = 0;
 var gameWon = false;
-var winningScore = 5;
+var winningScore = 3;
 
 var tailScore = document.querySelector("#tailScore");
 var headScore = document.querySelector("#headScore");
