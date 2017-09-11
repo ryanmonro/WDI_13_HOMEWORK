@@ -1,0 +1,43 @@
+body {
+      background: black;
+      color: chartreuse;
+      font-family: "Press Start 2P", cursive;
+      margin: 0 auto;
+      width: 60%;
+      
+    }
+    h3,
+    h4 {
+      display: inline;
+    }
+
+    li {
+      list-style: none;
+      line-height: 1.2em;
+    }
+
+    .scoreBoard {
+      margin: 20px auto; 
+      text-align: center;
+    }
+
+    #winnerMessage {
+      color: red;
+      line-height: 2em;
+      font-size: 2em;
+      height: 2em;
+      margin: 0;
+      text-align: center;
+    }
+    .score {
+      display: inline-block;
+    }
+
+    img {
+      display: inline-block;
+      width: 250px;
+    }
+
+    .imgWrapper {
+      text-align: center;
+    }
