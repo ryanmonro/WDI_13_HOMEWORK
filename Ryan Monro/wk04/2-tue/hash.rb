@@ -45,13 +45,17 @@ users['Anil'][:favorite_numbers].select { |number| number.even?  }
 
 # How would you return an array of the favorite numbers common to all users?
 
-favorites = []
-users.values.each { |user| favorites.push user[:favorite_numbers]  }
-common_favorites = favorites[0].select { |value| 
-  favorites[1].include?(value) && 
-  favorites[2].include?(value) && 
-  favorites[3].include?(value) 
-}
+# favorites = []
+# users.values.each { |user| favorites.push user[:favorite_numbers]  }
+# common_favorites = favorites[0].select { |value| 
+#   favorites[1].include?(value) && 
+#   favorites[2].include?(value) && 
+#   favorites[3].include?(value) 
+# }
+common_favorites = users['Erik'][:favorite_numbers] &
+  users['Jonathan'][:favorite_numbers] &
+  users['Anil'][:favorite_numbers] &
+  users['Ryan'][:favorite_numbers]
 
 
 # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?
@@ -60,4 +64,4 @@ all_favorites = []
 users.values.each { |user| all_favorites += user[:favorite_numbers]  }
 all_favorites.sort!.uniq!
 
-# binding.pry
+binding.pry
