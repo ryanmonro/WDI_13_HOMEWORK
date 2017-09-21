@@ -1,0 +1,14 @@
+<main>
+<h1>
+  <%= @stock_name %>    
+</h1>
+  <%= @result.lastTrade %>
+
+  <%if @result.changePoints > 0 %>
+  <%= "<span class='up'>" %> 
+  <% else %>
+  <%= "<span class='down'>" %> 
+  <% end %>
+  <%= @result.changePoints %>
+  </span>
+</main>
