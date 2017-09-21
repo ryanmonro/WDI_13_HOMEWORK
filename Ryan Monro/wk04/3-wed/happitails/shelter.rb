@@ -12,40 +12,30 @@ class Shelter
     @clients << client
   end
 
-  def list_animals
-    @animals.each do |animal|
-      puts(animal.name + " - " + animal.species)
-    end
+  def animals_count
+    return @animals.count
   end
 
-  def list_clients
+  def clients_count
+    return @clients.count
+  end
+
+  def clients_with_pets_count
+    count = 0
     @clients.each do |client|
-      puts(client.name)
+      if client.pets_count > 0
+        count += 1
+      end
     end
+    return count
   end
 
   def animal_with_index index
     return @animals[index]
   end 
 
-  def animal_with_name name
-    @animals.each do |animal|
-      if animal.name == name
-        return animal
-      end
-    end
-  end
-
   def client_with_index index
     return @clients[index]
-  end
-
-  def client_with_name name
-    @clients.each do |client|
-      if client.name == name
-        return client
-      end
-    end
   end
 
   def adopt_animal_to_client(animal, client)
