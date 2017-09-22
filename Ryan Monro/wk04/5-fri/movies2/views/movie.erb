@@ -1,0 +1,15 @@
+<img class="fullposter" src="<%= @result["Poster"] %>" alt="poster">
+<section>
+<h2><%= @result["Title"] %> (<%= @result["Year"] %>)</h2>
+<ul>
+  <li>Rated: <%= @result["Rated"] %></li>
+  <li>Released: <%= @result["Released"] %></li>
+  <li>Runtime: <%= @result["Runtime"] %></li>
+  <li>Genre: <%= @result["Genre"] %></li>
+  <li>Director: <%= @result["Director"] %></li>
+  <li>Writer: <%= @result["Writer"] %></li>
+  <li>Actors: <%= @result["Actors"] %></li>
+</ul>
+<h3>Plot:</h3>
+<p><%= @result["Plot"] %></p>
+</section>

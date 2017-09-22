@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  background: ivory;
+  font-family: Courier;
+}
+
+h1 a {
+  text-decoration: none;
+  color: black;
+}
+
+h1 a:hover {
+  text-decoration: underline;
+}
+
+.poster-wrapper {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  margin: 0;
+}
+
+.poster {
+  display: block;
+  margin: 0 auto;
+  /*max-width: 200px;*/
+  height: 100%;
+}
+
+header {
+  width: 100%;
+  background: tomato;
+  padding: 20px;
+}
+
+h1 {
+  display: inline-block;
+  height: 40px;
+  margin: 0;
+  padding: 10px 40px;
+}
+
+form {
+  display: inline-block;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+img.fullposter {
+  float: left;
+  margin: 10px;
+  width: 40%;
+}
+
+section {
+  float: left;
+  width: 50%;
+}
