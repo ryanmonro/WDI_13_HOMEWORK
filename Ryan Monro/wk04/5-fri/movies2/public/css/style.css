@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background: ivory;
-  font-family: Courier;
+  font-family: 'Acme', Courier;
 }
 
 h1 a {
@@ -24,11 +24,11 @@ h1 a:hover {
 .poster {
   display: block;
   margin: 0 auto;
-  /*max-width: 200px;*/
   height: 100%;
 }
 
 header {
+  font-family: 'Acme', Courier;
   width: 100%;
   background: tomato;
   padding: 20px;
@@ -46,9 +46,35 @@ form {
 }
 
 main {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 40px;
+}
+
+nav {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+header>nav>a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+header>nav>a:hover {
+  text-decoration: underline;
+
+}
+
+form>input {
+  height: 28px;
+  border-style: double;
+}
+
+form>button {
+  height: 28px;
+  font-size: 20px;
 }
 
 img.fullposter {
@@ -59,5 +85,6 @@ img.fullposter {
 
 section {
   float: left;
+  padding-left: 20px;
   width: 50%;
 }
