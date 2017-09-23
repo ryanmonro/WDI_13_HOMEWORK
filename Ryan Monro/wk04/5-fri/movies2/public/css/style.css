@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: ivory;
@@ -14,16 +18,19 @@ h1 a:hover {
 }
 
 .poster-wrapper {
+  vertical-align: top;
   display: inline-block;
   width: 200px;
   height: 200px;
-  padding: 10px;
-  margin: 0;
+  padding: 5px;
+  text-align: center;
+  margin: 2px;
+  border: 1px solid black;
 }
 
 .poster {
   display: block;
-  margin: 0 auto;
+  margin: auto auto;
   height: 100%;
 }
 
@@ -80,7 +87,7 @@ form>button {
 img.fullposter {
   float: left;
   margin: 10px;
-  width: 40%;
+  width: 33%;
 }
 
 section {
