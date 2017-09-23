@@ -30,7 +30,7 @@ h1 a:hover {
 
 .poster {
   display: block;
-  margin: auto auto;
+  margin: 0 auto;
   height: 100%;
 }
 
