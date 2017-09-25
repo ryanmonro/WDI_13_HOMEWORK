@@ -1,0 +1,15 @@
+select * from players where team = 'NYK';
+select * from players where team = 'IND' and age < 26;
+select * from players order by points asc;
+select name, points from players order by points desc limit 20;
+select avg(age) from players;
+select avg(age) from players where team = 'OKC';
+select avg(age) from players where games > 40;
+select team, sum(points) as team_points from players group by team order by team_points desc;
+
+Extension:
+select age, avg(points/games) from players group by age order by age asc;
+
+select team, count(points/games > 12) as over_12_per_gamers  from players group by team order by over_12_per_gamers desc;
+
+select team, count(name) as players_with_over_12_ppg from players where points/games > 12 group by team order by players_with_over_12_ppg desc;
