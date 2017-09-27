@@ -1,0 +1,4 @@
+<h2>Search History</h2>
+<% @history.each do |query| %>
+<p><a href="/?query=<%= query %>"><%= query %></a></p>
+<% end %>

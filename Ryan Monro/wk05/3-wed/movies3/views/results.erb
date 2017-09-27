@@ -1,0 +1,7 @@
+<% @result.each do |movie| %>
+<div class="poster-wrapper">
+  <a href="/movie?id=<%= movie["imdbID"] %>">
+    <img src="<%=movie["Poster"]%>" alt="<%= movie["Title"] %>" class="poster">
+  </a>
+</div>
+<% end %>

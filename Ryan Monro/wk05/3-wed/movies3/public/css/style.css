@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: ivory;
+  font-family: 'Acme', Courier;
+}
+
+h1 a {
+  text-decoration: none;
+  color: black;
+}
+
+h1 a:hover {
+  text-decoration: underline;
+}
+
+.poster-wrapper {
+  vertical-align: top;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  padding: 5px;
+  text-align: center;
+  margin: 2px;
+  border: 1px solid black;
+}
+
+.poster {
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+}
+
+header {
+  font-family: 'Acme', Courier;
+  width: 100%;
+  background: tomato;
+  padding: 20px;
+}
+
+h1 {
+  display: inline-block;
+  height: 40px;
+  margin: 0;
+  padding: 10px 40px;
+}
+
+form {
+  display: inline-block;
+}
+
+main {
+  margin: 40px;
+}
+
+nav {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+header>nav>a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+header>nav>a:hover {
+  text-decoration: underline;
+
+}
+
+form>input {
+  height: 28px;
+  border-style: double;
+}
+
+form>button {
+  height: 28px;
+  font-size: 20px;
+}
+
+img.fullposter {
+  float: left;
+  margin: 10px;
+  width: 33%;
+}
+
+section {
+  float: left;
+  padding-left: 20px;
+  width: 50%;
+}

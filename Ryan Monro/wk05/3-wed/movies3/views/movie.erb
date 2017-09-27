@@ -1,0 +1,20 @@
+<img class="fullposter" src="<%= @movie.poster %>" alt="poster">
+<section>
+<h2><%= @movie.title %> (<%= @movie.year %>)</h2>
+<ul>
+  <li>Rated: <%= @movie.rated %></li>
+  <li>Released: <%= @movie.released %></li>
+  <li>Runtime: <%= @movie.runtime %></li>
+  <li>Genre: <%= @movie.genre %></li>
+  <li>Director: <%= @movie.director %></li>
+  <li>Writer: <%= @movie.writer %></li>
+  <li>Actors: <%= @movie.actors %></li>
+</ul>
+<h3>Plot:</h3>
+<p><%= @movie.plot %></p>
+<% if @local_result %>
+<p>Fetched from local database</p>
+<% else %>
+<p>Fetched from OMDB</p>
+<% end %>
+</section>
