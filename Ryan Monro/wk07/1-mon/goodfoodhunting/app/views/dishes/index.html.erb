@@ -1,0 +1,5 @@
+<h1>All Dishes</h1>
+<p><a href="/dishes/new">Add New Dish</a></p>
+<% @dishes.each do |dish| %>
+  <p><a href="/dishes/<%= dish.id %>"><%= dish.name %></a></p>
+<% end %>
