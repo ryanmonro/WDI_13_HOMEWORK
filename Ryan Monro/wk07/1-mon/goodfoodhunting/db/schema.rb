@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009053359) do
+ActiveRecord::Schema.define(version: 20171010062003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_comments_on_dish_id"
+  end
+
+  create_table "dish_venues", force: :cascade do |t|
+    t.bigint "dish_id"
+    t.bigint "venue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_dish_venues_on_dish_id"
+    t.index ["venue_id"], name: "index_dish_venues_on_venue_id"
+  end
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
@@ -22,4 +39,13 @@ ActiveRecord::Schema.define(version: 20171009053359) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "comments", "dishes"
+  add_foreign_key "dish_venues", "dishes"
+  add_foreign_key "dish_venues", "venues"
 end

@@ -1,6 +1,12 @@
-<a href="/dishes">Back</a>
-<h1><%= @dish.name %></h1>
-<img src="<%= @dish.image_url %>" alt="image">
+<h1 class="content-subhead"><%= @dish.name %></h1>
+
+<div class="pure-g">
+  <div class="pure-u-1-2">
+      <img class="pure-img-responsive" src="<%= @dish.image_url %>" alt="Dish">
+  </div>
+</div>
+
+<h4><%= @dish.venues[0].name %></h4>
 
 <p><a href="/dishes/<%= @dish.id %>/edit">Edit</a></p>
 
@@ -11,3 +17,17 @@
     <button>Delete</button>
   </form>
 </p>
+
+<h3>Comments:</h3>
+<% @comments.each do |comment| %>
+  <p><%= comment.content %></p>
+
+<% end %>
+
+<%= form_tag '/comments' do %>
+  <input type="hidden" name="dish_id" value="<%=@dish.id%>">
+  <input type="text" name="content"><br>
+  <button>Post Comment</button>
+<% end %>
+
+<a href="/dishes">Back</a>

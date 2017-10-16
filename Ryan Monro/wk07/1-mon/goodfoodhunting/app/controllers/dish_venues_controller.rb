@@ -1,0 +1,2 @@
+class DishVenuesController < ApplicationController
+end
