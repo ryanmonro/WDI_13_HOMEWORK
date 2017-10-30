@@ -11,7 +11,9 @@ $searchButton.on('click', function(event){
   offset += 10
 })
 
-$(document).on('scroll', function(event){
+
+$(window).scroll(function(){
+// $(document).on('scroll', function(){
   if ($(document).scrollTop() + window.innerHeight > document.body.clientHeight) {
     appendGifs($searchInput.val(), limit, offset)  
     offset += 10
