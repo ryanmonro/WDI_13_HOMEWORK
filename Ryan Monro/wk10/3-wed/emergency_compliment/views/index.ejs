@@ -19,8 +19,15 @@
   </style>
 </head>
 <body>
-  <div id="compliment">
-    <h1><%= greeting %><%= compliment %></h1>
-  </div>
+  <main>
+    <div id="compliment">
+      <h1><%= greeting %><%= compliment %></h1>
+      <form action="/compliment/" method="post">
+        <textarea name="compliment" id="" cols="30" rows="4"></textarea><br>
+        <button>Submit</button>
+      </form>
+      
+    </div>
+  </main>
 </body>
 </html>

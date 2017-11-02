@@ -1,28 +1,42 @@
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
+var bodyParser = require('body-parser')
+var fs = require('fs')
 
-const PORT = 8888;
+const PORT = 8888
 
-app.set('views', './views');
-app.set('view engine', 'ejs');
+app.set('views', './views')
+app.set('view engine', 'ejs')
+
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 app.get('/', function(request, response){
+  var color = randomColor()
   var data = {
     greeting: "",
-    color: randomColor(),
-    compliment: randomCompliment(),
+    color: color,
+    compliment: randomCompliment(color),
     font: randomFont()
   }
   response.render('index', data);
-});
+})
+
+app.post('/compliment', function(request, response){
+  addCompliment(request.body.compliment)
+  response.redirect('/')
+})
 
 app.get('/:user', function(request, response){
   var name = request.params.user.slice(0,1).toUpperCase();
   name += request.params.user.slice(1);
+  var color = randomColor()
   var data = {
     greeting: "Hi " + name + ". ",
-    color: randomColor(),
-    compliment: randomCompliment(),
+    color: color,
+    compliment: randomCompliment(color),
     font: randomFont()
   }
   response.render('index', data);
@@ -30,16 +44,20 @@ app.get('/:user', function(request, response){
 
 app.listen(PORT);
 
-function randomCompliment(){
-  var compliments = 
-  [
-    'Your indenting shows how mindful you are of the well-being of those around you.',
-    'You had me at box-sizing: border-box.',
-    'Your variable names are like a window into your mind when you wrote the app.',
-    'Awesome...how did you do that? Is it all in a div or something?',
-    'Mistyrose, right? Sweeeeet.',
-    "I can't believe you found lunch so cheap, good, fast and close to campus."
-  ]
+function loadCompliments(){
+  var buffer = fs.readFileSync('compliments.json')
+  var compliments = JSON.parse(buffer)
+  return compliments
+}
+
+function addCompliment(compliment){
+  var compliments = loadCompliments()
+  compliments.push(compliment)
+  fs.writeFile('compliments.json', JSON.stringify(compliments))
+}
+
+function randomCompliment(color){
+  var compliments = loadCompliments();
   return randomElement(compliments);
 }
 
@@ -51,17 +69,16 @@ function randomColor(){
     'mintcream',
     'goldenrod',
     'tomato'
-
   ]
   return randomElement(colors);
 }
 
 function randomFont(){
-  var fonts = ['Anton', 'Inconsolata', 'Lobster','Saira'];
-  return randomElement(fonts);
+  var fonts = ['Anton', 'Inconsolata', 'Lobster','Saira']
+  return randomElement(fonts)
 }
 
 function randomElement(arr){
-  var index = Math.floor(Math.random() * arr.length);
-  return arr[index];
+  var index = Math.floor(Math.random() * arr.length)
+  return arr[index]
 }
